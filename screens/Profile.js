@@ -5,6 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 export default function SplashScreen(props){
 
     return(
+        
         <View style={styles.container}>
 
             <View style={styles.header}>

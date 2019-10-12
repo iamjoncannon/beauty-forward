@@ -6,6 +6,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import Feed from '../screens/Feed'
 import Profile from '../screens/Profile';
 import LinksScreen from '../screens/LinksScreen';
+import Gifts from "../screens/Gifts"
+import Search from "../screens/Search"
 import SettingsScreen from '../screens/SettingsScreen';
 
 const config = Platform.select({
@@ -73,7 +75,7 @@ ProfileStack.path = '';
 
 const SearchStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Links: Search,
   },
   config
 );
@@ -92,14 +94,14 @@ SearchStack.path = '';
 
 
 
-const SettingsStack = createStackNavigator(
+const GiftStack = createStackNavigator(
   {
-    Settings: SettingsScreen,
+    Settings: Gifts,
   },
   config
 );
 
-SettingsStack.navigationOptions = {
+GiftStack.navigationOptions = {
   
   tabBarLabel: 'Gifts',
   tabBarIcon: ({ focused }) => (
@@ -108,7 +110,7 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-SettingsStack.path = '';
+GiftStack.path = '';
 
 
 
@@ -116,7 +118,7 @@ SettingsStack.path = '';
 const tabNavigator = createBottomTabNavigator({
   FeedStack,
   SearchStack,
-  SettingsStack,
+  GiftStack,
   ProfileStack,
 });
 
