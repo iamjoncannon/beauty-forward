@@ -27,6 +27,7 @@ export default function Catalog(props){
             <View style={{marginBottom: 10}}>
 
                 <View style={{flexDirection: "row", alignItems: "center"}}>
+                
                 <Image 
                     source={require("../../assets/images/Profile/tree_icon.png")} 
                     style={styles.image}
@@ -70,11 +71,8 @@ export default function Catalog(props){
                 </View>
 
             </View>
-
          </ScrollView>
-        
     )
-
 }
 
 

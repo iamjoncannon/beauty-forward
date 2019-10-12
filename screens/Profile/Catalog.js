@@ -1,51 +1,72 @@
 import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
+import BarCodescanner from './BarCodescanner'
 
-export default function Catalog(props){
+export default class Catalog extends React.Component{
 
-    return(
-         <ScrollView>
+    constructor(props){
+        super(props)
 
-            <View style={styles.catalog_category}>
+        this.state = {
+            isScanning: false 
+        }
+    }
 
-                <Text style={{fontSize: 20}}>Face</Text>
+    render(){
 
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                    <Image source={require("../../assets/images/Profile/Foundation.png")} style={styles.image}/>
-                    <Image source={require("../../assets/images/Profile/Contour.png")} style={styles.image}/>
-                    <Image source={require("../../assets/images/Profile/Highlighter.png")} style={styles.image}/>
-                </View>
+            return(
+                <ScrollView>
+                    
+                    <TouchableOpacity onPress={this.props.exit}>
 
-            </View>
+                        <Text style={{alignSelf: "center", fontSize: 20}}> Add to Catalog </Text>
 
-            <View style={styles.catalog_category}>
+                    </TouchableOpacity>
+
+                    <View style={styles.catalog_category}>
+
+                        <Text style={{fontSize: 20}}>Face</Text>
+
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            <Image source={require("../../assets/images/Profile/Foundation.png")} style={styles.image}/>
+                            <Image source={require("../../assets/images/Profile/Contour.png")} style={styles.image}/>
+                            <Image source={require("../../assets/images/Profile/Highlighter.png")} style={styles.image}/>
+                        
+                        </View>
+
+                    </View>
+
+                    <View style={styles.catalog_category}>
 
 
-                <Text style={{fontSize: 20}}>Eyes</Text>
+                        <Text style={{fontSize: 20}}>Eyes</Text>
 
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                    <Image source={require("../../assets/images/Profile/Eyeshadow_Palette_3.png")} style={styles.image}/>
-                    <Image source={require("../../assets/images/Profile/Eyeshadow_Palette_2.png")} style={styles.image}/>
-                    <Image source={require("../../assets/images/Profile/Eyeshadow_Palette_1.png")} style={styles.image}/>
-                </View>
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            <Image source={require("../../assets/images/Profile/Eyeshadow_Palette_3.png")} style={styles.image}/>
+                            <Image source={require("../../assets/images/Profile/Eyeshadow_Palette_2.png")} style={styles.image}/>
+                            <Image source={require("../../assets/images/Profile/Eyeshadow_Palette_1.png")} style={styles.image}/>
+                        </View>
 
-            </View>
+                    </View>
 
-            <View style={styles.catalog_category}>
-                            
-                <Text style={{fontSize: 20}}>Lips</Text>
+                    <View style={styles.catalog_category}>
+                                    
+                        <Text style={{fontSize: 20}}>Lips</Text>
 
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                    <Image source={require("../../assets/images/Profile/Lipstick_1.png")} style={styles.image}/>
-                    <Image source={require("../../assets/images/Profile/Lipstick_2.png")} style={styles.image}/>
-                    <Image source={require("../../assets/images/Profile/Bitmapcopy.png")} style={styles.image}/>
-                </View>
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            {this.props.barcode && <Image source={require("../../assets/images/Profile/nail-lacquer.jpeg")} style={styles.image}/>}
+                            <Image source={require("../../assets/images/Profile/Lipstick_1.png")} style={styles.image}/>
+                            <Image source={require("../../assets/images/Profile/Lipstick_2.png")} style={styles.image}/>
+                            {/* <Image source={require("../../assets/images/Profile/Bitmapcopy.png")} style={styles.image}/> */}
+                        </View>
 
-            </View>
+                    </View>
 
-        </ScrollView>
-    )
+                </ScrollView>
+            )
+        }
+    
 }
 
 const styles = StyleSheet.create({
