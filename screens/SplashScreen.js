@@ -6,10 +6,10 @@ export default function SplashScreen(props){
     return(
         <View style={styles.container}>
 
-          <TouchableOpacity onPress={props.exit} style={styles.helpLink}>
 
-            <Image source={require('../assets/images/Login/Logo.png')} style={styles.logo}/>
+            <Image source={require('../assets/images/Login/Beauty_Forward_Logo.png')} style={styles.logo}/>
 
+          <TouchableOpacity onPress={props.exit}>
             <View>
                 <Image source={require('../assets/images/Login/Google_Group.png')} style={styles.image}/>
                 <Image source={require('../assets/images/Login/Instagram_Group.png')} style={styles.image}/>
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     },
     logo: {
         height: 200,
-        width: 275
+        width: 275,
+        resizeMode: 'contain',
     },
     image: {
 

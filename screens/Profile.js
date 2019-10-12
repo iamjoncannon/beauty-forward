@@ -1,84 +1,75 @@
 import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
+import Catalog from "./Profile/Catalog"
+import Social_Impact from "./Profile/Social_Impact"
 
-export default function SplashScreen(props){
+export default class SplashScreen extends React.Component{
 
-    return(
-        
-        <View style={styles.container}>
+    constructor(props){
+        super(props)
 
-            <View style={styles.header}>
+        this.state = {
+            page: "Catalog"
+        }
+    }
 
-                <View style={{marginRight: 5}}>
-                    <Text style={{fontSize: 30}}>Norah Smith</Text>
-                </View>
-                
-                <View>
-                    <Image source={require("../assets/images/profile_photo.png")} style={{height: 100, width: 100}}/>
-                </View>
+    render(){
 
-                
+        const { page } = this.state
+
+        return(
             
-            </View>
+            <View style={styles.container}>
 
-            <View style={{flex: .5, flexDirection: 'row', justifyContent: "space-evenly", alignItems: "space-evenly"}}>
-                
-                    <Text style={{textDecorationLine: "underline", fontSize: 15, marginRight: 10}} >Catalog</Text>
+                <View style={styles.header}>
 
-                    <Text style={{fontSize: 15}} > Social Impact </Text>
-
-                    <Text style={{fontSize: 15, marginLeft: 10}} >Skin Profile</Text>
-                
-            </View>
-
-            <View style={{flex: 7, marginTop: 10, alignItems: "center"}}>
-
-            
-                <ScrollView>
-
-                    <View style={styles.catalog_category}>
-                    
-                        <Text style={{fontSize: 20}}>Face</Text>
-                    
-                        <View style={{flex: 1, flexDirection: 'row'}}>
-                            <Image source={require("../assets/images/Profile/Foundation.png")} style={styles.image}/>
-                            <Image source={require("../assets/images/Profile/Contour.png")} style={styles.image}/>
-                            <Image source={require("../assets/images/Profile/Highlighter.png")} style={styles.image}/>
-                        </View>
-                    
+                    <View style={{marginRight: 5}}>
+                        <Text style={{fontSize: 30}}>Norah Smith</Text>
                     </View>
+                    
+                    <View>
+                        <Image source={require("../assets/images/profile_photo.png")} style={{height: 100, width: 100}}/>
+                    </View>
+                            
+                </View>
 
-                    <View style={styles.catalog_category}>
+                <View style={{flex: .5, flexDirection: 'row', justifyContent: "space-evenly", alignItems: "space-evenly"}}>
+                    
+                    <TouchableOpacity onPress={()=>{this.setState({page: "Catalog"})}}>
+
+                        <Text 
+                            style={{textDecorationLine: page === "Catalog" ? "underline" : "none", fontSize: 15, marginRight: 10}} 
+                            >Catalog
+                        </Text>
+                   
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={()=>{this.setState({page: "Social Impact"})}}>
                  
-                    
-                        <Text style={{fontSize: 20}}>Eyes</Text>
-                    
-                        <View style={{flex: 1, flexDirection: 'row'}}>
-                            <Image source={require("../assets/images/Profile/Eyeshadow_Palette_3.png")} style={styles.image}/>
-                            <Image source={require("../assets/images/Profile/Eyeshadow_Palette_2.png")} style={styles.image}/>
-                            <Image source={require("../assets/images/Profile/Eyeshadow_Palette_1.png")} style={styles.image}/>
-                        </View>
-                    
-                    </View>
+                        <Text style={{textDecorationLine: page === "Social Impact" ? "underline" : "none", fontSize: 15}} > Social Impact </Text>
 
-                    <View style={styles.catalog_category}>
-                                      
-                        <Text style={{fontSize: 20}}>Lips</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={()=>{this.setState({page: "Skin Profile"})}}>
+                  
+                        <Text style={{textDecorationLine: page === "Skin Profile" ? "underline" : "none", fontSize: 15, marginLeft: 10}} >Skin Profile</Text>
+                    </TouchableOpacity>
                     
-                        <View style={{flex: 1, flexDirection: 'row'}}>
-                            <Image source={require("../assets/images/Profile/Lipstick_1.png")} style={styles.image}/>
-                            <Image source={require("../assets/images/Profile/Lipstick_2.png")} style={styles.image}/>
-                            <Image source={require("../assets/images/Profile/Bitmapcopy.png")} style={styles.image}/>
-                        </View>
-                    
-                    </View>
-                    
-                </ScrollView>
-           
+                </View>
+
+                <View style={{flex: 7, marginTop: 10, alignItems: "center"}}>
+
+                    {page === "Catalog" && <Catalog />}
+                    {page === "Social Impact" && <Social_Impact />}
+                    {page === "Skin Profile" && <View />}
+                   
+            
+                </View>
             </View>
-        </View>
-    )
+        )
+    }
+
 }
 
 const styles = StyleSheet.create({
